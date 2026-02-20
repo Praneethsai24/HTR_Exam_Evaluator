@@ -1,0 +1,22 @@
+Process:
+Image then it goes through pre-processing then OCR
+OCR(Optical Character Recognition) is basically a traditional text conversion by  using ML And NN helps in understanding hanwriting and converts them to machine-encoded text.
+Ocr has higher accuracy
+
+After OCR converts into Text it goes through LLM Evaluation (We are using Ollama Local model) 
+Then it gives score and result or feedback
+
+
+
+Modules:
+1) htr_engine.py
+handels handwritten text extraction. Converts the uploaded image into grayscale and uses OCR to convert processed image to text.
+
+We use grayscale because handwriting varies in lighting and contrast. Also converting to grayscale reduces dimensionality and improves text-background Separation to improve OCR accuracy
+
+2) evaulator.py 
+This module sends the extracted text to a local LLM running via Ollama.
+constructs a prompt that includes the question and student answer, then requests scoring and feedback.
+
+3) main.py (UI)
+We used streamlit which allows image upload, question input and display extracted text and evaulation results
